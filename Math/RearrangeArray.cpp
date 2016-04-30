@@ -9,3 +9,14 @@ Return : [0, 1]
 * N * N does not overflow for a signed integer 
 
 https://www.interviewbit.com/problems/rearrange-array/ */
+void Solution::arrange(vector<int> &A) {
+    auto n = A.size();
+    for(auto i=0; i<n; ++i)
+    {
+        A[i] += (A[A[i]]%n)*n;
+    }
+    for(auto i=0; i<n; ++i)
+    {
+       A[i] /= n;
+    }
+}
