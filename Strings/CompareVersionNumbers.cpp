@@ -14,3 +14,76 @@ Here is an example of version numbers ordering:
 
 https://www.interviewbit.com/problems/compare-version-numbers/
 */
+
+void delLeadingZeroes(string& X, int len)
+{
+    for (auto k=0; k<len; ++k)
+    {
+        int temp = X[k] - '0';
+        if (!temp)
+            X.erase(0, 1);
+        else
+            break;
+    }
+}
+
+int isGreater(string A, string B)
+{
+    auto as = A.length(), bs = B.length();
+    int lenGap = as - bs;
+    if(lenGap!=0)
+        return lenGap>0 ? 1 : -1;
+    else if (A != B)
+        return A>B ? 1 : -1;
+    else
+        return 0;
+}
+
+void splitString(string& str, vector<string>& s)
+{
+    size_t pos = 0;
+    while ((pos = str.find(".")) != std::string::npos)
+    {
+        string token = str.substr(0, pos);
+        s.push_back(token);
+        str.erase(0, pos+1);
+    }
+}
+
+int Solution::compareVersion(string A, string B) {
+    int i = 0, j = 0;
+    vector<string> a, b;
+    
+    splitString(A, a);
+    splitString(B, b);
+    a.push_back(A); //for the last part of A & also if A didn't had any dots
+    b.push_back(B); //for the last part of B & also if B didn't had any dots
+    
+    int is = a.size(), js = b.size();
+    while (i<is && j<js)
+    {
+        delLeadingZeroes(a[i], a[i].length());
+        delLeadingZeroes(b[j], b[j].length());
+        auto temp = isGreater(a[i], b[j]);
+        
+        if (temp!=0)
+            return temp;
+        else
+        {
+            ++i; ++j;
+            if (i==is && j<js)
+            {
+                delLeadingZeroes(b[j], b[j].length());
+                if (b[j]!="")
+                    return -1;
+            }
+            else if (i<is && j==js)
+            {
+                delLeadingZeroes(a[i], a[i].length());
+                if(a[i]!="")
+                    return 1;
+            }
+        }
+    }
+    return 0;
+}
