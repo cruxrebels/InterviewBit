@@ -19,3 +19,16 @@ So total area = 3 * 2 = 6
 https://www.interviewbit.com/problems/container-with-most-water/
 */
 
+int Solution::maxArea(vector<int> &A) {
+    int area = 0;
+    int p = 0, q = A.size()-1;
+    while (p<q)
+    {
+        area = max(area, min(A[p], A[q])*(q-p));
+        if (A[p]<A[q])
+            ++p;
+        else
+            --q;
+    }
+    return area;
+}
