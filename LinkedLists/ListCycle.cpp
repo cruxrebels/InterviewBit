@@ -42,7 +42,7 @@ ListNode* Solution::detectCycle(ListNode* A) {
     }
     return NULL;*/
     
-    ListNode* slow, *fast;      //FLoyd's cycle finding algorithm
+    ListNode* slow, *fast;      //Floyd's cycle finding algorithm
     slow = fast = A;
     while (fast)    //if you give condn slow!=fast; it's wrong since slow=fast=A initially.
     {
