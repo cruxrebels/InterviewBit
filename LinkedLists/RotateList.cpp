@@ -39,10 +39,7 @@ ListNode* Solution::rotateRight(ListNode* A, int B) {
     else if(l>B)
         last = l-B;
     else
-    {
-        auto b = B%l;
-        last = l - b;
-    }
+        last = l - B%l;
     
     ListNode* headptr = A;
     while(last-1)
