@@ -26,5 +26,21 @@ string Solution::reverseString(string A) {
     }
     return A;
 }
-    return result;
-}
+
+/*string Solution::reverseString(string A) {
+    stack<char> s;
+    auto size = A.length();
+    
+    for(auto i=0; i<size; ++i)
+        s.push(A[i]);
+    A.clear();  //Not necessarily required since the new string length is going to be the same. See above approach.
+    for(auto j=0; j<size; ++j)
+    {
+        if(!s.empty())
+        {
+            A += s.top();   //One way to do it
+            s.pop();
+        }
+    }
+    return A;
+}*/
