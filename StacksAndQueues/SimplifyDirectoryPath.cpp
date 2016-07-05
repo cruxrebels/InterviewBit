@@ -12,39 +12,37 @@ https://www.interviewbit.com/problems/simplify-directory-path/
 */
 
 string Solution::simplifyPath(string A) {
-  stack<char> s;
-  auto size = A.length();
-  
-  for (auto i = 0; i<size; ++i)
-      s.push(A[i]);
-  
-  while(!s.empty() && !isalpha(s.top()))
-      s.pop();
-      
-  if(s.empty())
-      return "/";
-  A.clear();
-  bool flag = false;
-  while(!s.empty() && (isalpha(s.top()) || s.top()=='/'))
-  {
-      if(s.top()=='/')
-          flag = true;
-      else
-      {
-          if(flag)
-          {
-              A += '/';
-              flag = false;
-          }
-          A += s.top();   
-      }
-          
-      s.pop();
-      //cout << s.top() << "\n";
-  }
-  A += '/'; //cout << s.top() << "\n"; cout << A << "\n";cout << A.length() << "\n";
-  string result = "";
-  for (int j = A.length()-1; j>-1; --j)
-      result += A[j]; 
-  return result;
+    vector<string> collection;
+    string name = "";
+    
+    A.push_back('/');   //For path ending with ..
+    
+    for (auto i = 0; i<A.length(); ++i)
+    {
+        if (A[i] == '/')
+        {
+            if (name.size() == 0) continue;
+            else if (name == ".") {}
+            else if (name == "..")
+            {
+                if (collection.size() > 0)
+                    collection.pop_back();
+            }
+            else
+                collection.emplace_back(name);
+            
+            name.clear();
+        }
+        else
+            name.push_back(A[i]);
+    }
+    
+    if (collection.empty())
+        return "/";
+        
+    A.clear();
+    for (auto j = 0; j<collection.size(); ++j)
+        A.append("/" + collection[j]);
+        
+    return A;
 }
