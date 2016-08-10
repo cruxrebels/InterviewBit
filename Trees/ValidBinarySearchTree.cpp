@@ -27,3 +27,26 @@ Return 0 / 1 ( 0 for false, 1 for true ) for this problem
 https://www.interviewbit.com/problems/valid-binary-search-tree/
 */
 
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+int isValidBSTHelper(TreeNode* root, int minValue, int maxValue)
+{
+    if (!root)  
+        return 1;
+    if (root->val > minValue && root->val < maxValue
+        && isValidBSTHelper(root->left, minValue, root->val)
+        && isValidBSTHelper(root->right, root->val, maxValue))
+        return 1;
+    else
+        return 0;
+}
+int Solution::isValidBST(TreeNode* A) {
+    return isValidBSTHelper(A, INT_MIN, INT_MAX);
+}
