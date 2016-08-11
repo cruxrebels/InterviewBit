@@ -22,3 +22,71 @@ Assume that the value is always present in the tree.
 https://www.interviewbit.com/problems/next-greater-number-bst/
 */
 
+/**
+ * Definition for binary tree
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+TreeNode* FindCurrentNode(TreeNode* A, int B)
+{
+    if (!A || A->val == B)
+        return A;
+    else if (A->val >= B)
+        return FindCurrentNode(A->left, B);
+    else if (A->val < B)
+        return FindCurrentNode(A->right, B);
+}
+
+TreeNode* FindParentNode(TreeNode* root, TreeNode* dest)
+{
+    if (!root || root->left == dest || root->right == dest)
+        return root;
+    else if (root->val >= dest->val)
+        return FindParentNode(root->left, dest);
+    else if (root->val < dest->val)
+        return FindParentNode(root->right, dest);
+}
+
+TreeNode* Solution::getSuccessor(TreeNode* A, int B) {
+    TreeNode* currNode = FindCurrentNode(A, B);
+    if (!currNode)
+        return currNode;
+    
+    TreeNode* currTemp = currNode;
+    TreeNode* nxtGrt = NULL;
+    
+    if (currNode->right)    //Find deepest left leaf
+    {
+        currTemp = currTemp->right;
+        while (currTemp->left)
+            currTemp = currTemp->left;
+        nxtGrt = currTemp;
+    }
+    else if (!currNode->right)  
+    {
+        /*TreeNode* parent = FindParentNode(A, currNode);
+        if (parent)
+        {
+            if (parent->right == currNode) //Find nearest ancestor
+                nxtGrt = FindParentNode(A, parent);
+            else if (parent->left == currNode) //Find immediate parent
+                nxtGrt = parent;
+        }*/
+        TreeNode* ancestor = A;
+        while (ancestor != currNode)
+        {
+            if (currNode->val < ancestor->val)
+            {
+                nxtGrt = ancestor;
+                ancestor = ancestor->left;
+            }
+            else
+                ancestor = ancestor->right;
+        }
+    }
+    return nxtGrt;
+}
