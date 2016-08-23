@@ -25,7 +25,9 @@ https://www.interviewbit.com/problems/inorder-traversal/
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
- void Inorder(TreeNode* root, vector<int>& res)
+ 
+ // Method 1 - Using recursion
+ /*void Inorder(TreeNode* root, vector<int>& res)
  {
     if (!root)
         return;
@@ -37,4 +39,6 @@ vector<int> Solution::inorderTraversal(TreeNode* A) {
     vector<int> res;
     Inorder(A, res);
     return res;
-}
+}*/
+
+// Method 2 - Without using recursion
