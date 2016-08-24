@@ -26,7 +26,9 @@ https://www.interviewbit.com/problems/postorder-traversal/
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-void PostOrder(TreeNode* root, vector<int>& res)
+ 
+// Method 1 - Using recursion (More space complexity)
+/*void PostOrder(TreeNode* root, vector<int>& res)
 {
     if (!root)
         return;
@@ -37,5 +39,27 @@ void PostOrder(TreeNode* root, vector<int>& res)
 vector<int> Solution::postorderTraversal(TreeNode* A) {
     vector<int> res;
     PostOrder(A, res);
+    return res;
+}*/
+
+// Method 2 - Without using recursion (Less space complexity, more preferred way)
+vector<int> Solution::postorderTraversal(TreeNode* A) {
+    vector<int> res;
+    stack<TreeNode*> stack;
+    if (!A)
+        return res;
+    stack.push(A);
+    
+    while (!stack.empty())
+    {
+        TreeNode* node = stack.top();
+        res.emplace_back(node->val);
+        stack.pop();
+        if (node->left)
+            stack.push(node->left);
+        if (node->right)
+            stack.push(node->right);
+    }
+    reverse(res.begin(), res.end());
     return res;
 }
