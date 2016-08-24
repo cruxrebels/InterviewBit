@@ -25,7 +25,9 @@ https://www.interviewbit.com/problems/preorder-traversal/
  *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
  * };
  */
-void PreOrder(TreeNode* root, vector<int>& res)
+
+// Method 1 - Using recursion (Space complexity is more)
+/*void PreOrder(TreeNode* root, vector<int>& res)
 {
     if (!root)
         return;
@@ -36,5 +38,26 @@ void PreOrder(TreeNode* root, vector<int>& res)
 vector<int> Solution::preorderTraversal(TreeNode* A) {
     vector<int> res;
     PreOrder(A, res);
+    return res;
+}*/
+
+// Method 2 - Without using recursion (Space complexity is less, more preferred way)
+vector<int> Solution::preorderTraversal(TreeNode* A) {
+    vector<int> res;
+    stack<TreeNode*> stack;
+    if (!A)
+        return res;
+    stack.push(A);
+    
+    while (!stack.empty())
+    {
+        TreeNode* node = stack.top();
+        res.emplace_back(node->val);
+        stack.pop();
+        if (node->right)
+            stack.push(node->right);
+        if (node->left)
+            stack.push(node->left);
+    }
     return res;
 }
