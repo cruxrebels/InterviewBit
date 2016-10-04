@@ -31,3 +31,15 @@ single integer value
 https://www.interviewbit.com/problems/assign-mice-to-holes/
 */
 
+int Solution::mice(vector<int> &A, vector<int> &B) {
+    sort(A.begin(), A.end());
+    sort(B.begin(), B.end());
+    int time = INT_MIN;
+    for (auto m = 0; m<A.size(); ++m)
+    {
+        int diff = abs(A[m] - B[m]);
+        if (diff > time)
+            time = diff;
+    }
+    return time;
+}
