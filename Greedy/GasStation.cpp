@@ -26,3 +26,56 @@ Now your tank has 2 units of gas. You need cost[1] = 1 gas to get to station 0. 
 https://www.interviewbit.com/problems/gas-station/
 */
 
+// My feeble TLE recursive solution
+/*bool roundTripPossible(const int& sp, int pos, const vector<int>& gas, const vector<int>& cost, 
+                        int cumGas = 0, int cumCost = 0, bool first = false)
+{
+    if (first && pos == sp)
+        return true;
+    cumGas += gas[pos];
+    cumCost += cost[pos];
+    if (cumGas - cumCost < 0)
+        return false;
+    else
+    {
+        cumGas -= cumCost;
+        cumCost = 0;
+        ++pos;
+        pos = pos%gas.size();
+        if (roundTripPossible(sp, pos, gas, cost, cumGas, cumCost, true))
+            return true;
+    }
+    return false;
+}
+
+int Solution::canCompleteCircuit(const vector<int> &gas, const vector<int> &cost) {
+    int res = -1;
+    for (auto i = 0; i<gas.size(); ++i)
+    {
+        if (roundTripPossible(i, i, gas, cost))
+        {
+            res = i;
+            break;
+        }
+    }
+    return res;
+}*/
+int Solution::canCompleteCircuit(const vector<int> &gas, const vector<int> &cost) {
+    int tank = 0, start = 0, sumGas = 0, sumCost = 0;
+    
+    for (auto i = 0; i<gas.size(); ++i)
+    {
+        sumGas += gas[i];
+        sumCost += cost[i];
+        tank += (gas[i] - cost[i]);
+        if (tank < 0)
+        {
+            start = i + 1;
+            tank = 0;
+        }
+    }
+    
+    if (sumGas < sumCost)
+        return -1;
+    return start;
+}
