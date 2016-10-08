@@ -13,3 +13,12 @@ Example:
 
 https://www.interviewbit.com/problems/highest-product/
 */
+
+int Solution::maxp3(vector<int> &A) {
+    auto size = A.size();
+    sort(A.begin(), A.end());
+    int allPositives = A[size-1]*A[size-2]*A[size-3];
+    int twoNegatives = A[0]*A[1]*A[size-1];
+    int res = max(allPositives, twoNegatives);
+    return res;
+}
