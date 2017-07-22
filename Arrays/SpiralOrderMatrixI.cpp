@@ -1,7 +1,7 @@
 vector<int> Solution::spiralOrder(const vector<vector<int> > &A) {
 	vector<int> result;
 	// DO STUFF HERE AND POPULATE result
-	auto rows = A.size
+	auto rows = A.size();
 	if (rows == 0)
 	    return vector<int> ();
 	auto columns = A[0].size();
