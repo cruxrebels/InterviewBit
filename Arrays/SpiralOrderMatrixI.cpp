@@ -1,54 +1,39 @@
 vector<int> Solution::spiralOrder(const vector<vector<int> > &A) {
-	vector<int> result;
+    int rows = A.size();
+    if (rows == 0)
+	    return vector<int>();
+    int cols = A[0].size();
+    vector<int> result;
+    result.resize(rows*cols);
 	// DO STUFF HERE AND POPULATE result
-	auto rows = A.size();
-	if (rows == 0)
-	    return vector<int> ();
-	auto columns = A[0].size();
-	int T, B, L, R;
-	T = 0, B = rows - 1, L = 0, R = columns - 1;
-	int dir = 0;
-	while(T<=B && L<=R)
-	{
-	    switch(dir)
-	    {
-	        case 0: 
-	        for(auto i=L; i<=R; ++i)
-	        {
-	            result.emplace_back(A[T][i]);
-	        }
-	        T++;
-	        break;
-	        
-	        case 1:
-	        for(auto j=T; j<=B; ++j)
-	        {
-	            result.emplace_back(A[j][R]);
-	        }
-	        R--;
-	        break;
-	        
-	        case 2:
-	        for(auto k=R; k>=L; --k)
-	        {
-	            result.emplace_back(A[B][k]);
-	        }
-	        B--;
-	        break;
-	        
-	        case 3:
-	        for(auto l=B; l>=T; --l)
-	        {
-	            result.emplace_back(A[l][L]);
-	        }
-	        L++;
-	        break;
-	        
-	        default:
-	        std::cout<<"Inside default\n";
-	        break;
-	    }
-	    dir = (dir + 1)%4;
-	}
-	return result;
+    int l = 0, t = 0, r = cols-1, b = rows-1;
+    int dir = 0;
+    int n = -1;
+    while (t<=b && l<=r)
+    {
+        switch (dir)
+        {
+            case 0:
+                for (auto i = l; i<=r; ++i)
+                    result[++n] = A[t][i];
+                ++t; dir = 1;
+                break;
+            case 1:
+                for (auto i = t; i<=b; ++i)
+                    result[++n] = A[i][r];
+                --r; dir = 2;
+                break;
+            case 2:
+                for (auto i = r; i>=l; --i)
+                    result[++n] = A[b][i];
+                --b; dir = 3;
+                break;
+            case 3:
+                for (auto i = b; i>=t; --i)
+                    result[++n] = A[i][l];
+                ++l; dir = 0;
+                break;
+        }
+    }
+    return result;
 }
