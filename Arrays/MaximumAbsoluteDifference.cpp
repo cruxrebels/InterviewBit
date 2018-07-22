@@ -17,23 +17,15 @@ https://www.interviewbit.com/problems/maximum-absolute-difference/
 */
 
 int Solution::maxArr(vector<int> &A) {
-    int max1 = INT_MIN, max2 = INT_MIN, max3 = INT_MIN, max4 = INT_MIN;
     assert(!A.empty());
-    int ans = INT_MIN;
-    int size = A.size();
-    for (auto i = 0; i<size; ++i)
+    int sum = INT_MIN, max1 = INT_MIN, max2 = INT_MIN, min1 = INT_MAX, min2 = INT_MAX;
+    for (auto i = 0; i < A.size(); ++i)
     {
         max1 = max(max1, A[i] + i);
-        max2 = max(max2, -A[i] + i);
-        max3 = max(max3, A[i] - i);
-        max4 = max(max4, -A[i] - i);
+        max2 = max(max2, A[i] - i);
+        min1 = min(min1, A[i] + i);
+        min2 = min(min2, A[i] - i);
     }
-    for (auto i = 0; i<size; ++i)
-    {
-        ans = max(ans, max1 - A[i] - i);
-        ans = max(ans, max2 + A[i] - i);
-        ans = max(ans, max3 - A[i] + i);
-        ans = max(ans, max4 + A[i] + i);
-    }
-    return ans;
+    sum = max(max1-min1, max2-min2);
+    return sum;
 }
