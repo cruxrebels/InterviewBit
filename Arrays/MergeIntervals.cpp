@@ -1,3 +1,23 @@
+/*
+Given a set of non-overlapping intervals, insert a new interval into the intervals (merge if necessary).
+
+You may assume that the intervals were initially sorted according to their start times.
+
+Example 1:
+
+Given intervals [1,3],[6,9] insert and merge [2,5] would result in [1,5],[6,9].
+
+Example 2:
+
+Given [1,2],[3,5],[6,7],[8,10],[12,16], insert and merge [4,9] would result in [1,2],[3,10],[12,16].
+
+This is because the new interval [4,9] overlaps with [3,5],[6,7],[8,10].
+
+Make sure the returned intervals are also sorted.
+
+https://www.interviewbit.com/problems/merge-intervals/
+*/
+
 /**
  * Definition for an interval.
  * struct Interval {
@@ -7,6 +27,8 @@
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
  */
+
+// Solution 1
 vector<Interval> Solution::insert(vector<Interval> &intervals, Interval newInterval) {
     int a = 0;
     int b = 0;
@@ -98,4 +120,61 @@ vector<Interval> Solution::insert(vector<Interval> &intervals, Interval newInter
     }
     //return the resultant vector
     return overlap;
+}
+
+// Solution 2
+vector<Interval> Solution::insert(vector<Interval> &intervals, Interval newInterval) {
+    size_t n = intervals.size();
+    if (n == 0) {
+        intervals.emplace_back(newInterval);
+        return intervals;
+    }
+    if (newInterval.start > newInterval.end) 
+        swap(newInterval.start, newInterval.end);
+        
+    if (newInterval.start > intervals[n-1].end) {
+        intervals.emplace_back(newInterval);
+        return intervals;
+    }
+    else if (newInterval.end < intervals[0].start) {
+        intervals.insert(intervals.begin(), newInterval);
+        return intervals;
+    }
+    
+    int mergedStart = INT_MAX, mergedEnd = INT_MAX, startPos = 0, endPos = INT_MAX;
+    for (auto i = 0; i < n; ++i) {
+        if (mergedStart == INT_MAX && (newInterval.start <= intervals[i].start 
+            || newInterval.start <= intervals[i].end)) {
+            mergedStart = min(newInterval.start, intervals[i].start);
+            startPos = i;
+        }
+        if (mergedEnd == INT_MAX && (newInterval.end <= intervals[i].end
+            || newInterval.end <= intervals[i].start)) {
+            if (newInterval.end <= intervals[i].start) {
+                mergedEnd = newInterval.end;
+                endPos = i-1;
+            }
+            else {
+                mergedEnd = intervals[i].end;
+                endPos = i;
+            }
+        }
+        if (mergedStart != INT_MAX && mergedEnd != INT_MAX)
+            break;
+    }
+    
+    if (mergedStart == INT_MAX)
+        mergedStart = newInterval.start;
+    else if (mergedEnd == INT_MAX)
+        mergedEnd = newInterval.end;
+        
+    Interval mergedPair(mergedStart, mergedEnd);
+    vector<Interval> res;
+    for (auto j = 0; j < startPos; ++j) 
+        res.emplace_back(intervals[j]);
+    res.emplace_back(mergedPair);
+    for (auto k = endPos+1; k < n; ++k)
+        res.emplace_back(intervals[k]);
+        
+    return res;
 }
