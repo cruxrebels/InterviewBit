@@ -1,3 +1,15 @@
+/*
+Given a number N >= 0, find its representation in binary.
+
+Example:
+
+if N = 6,
+
+binary form = 110
+
+https://www.interviewbit.com/problems/binary-representation/
+*/
+
 string Solution::findDigitsInBinary(int A) {
     int r;
     string result;
