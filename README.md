@@ -16,7 +16,7 @@ by comments simultaneously to run/submit on InterviewBit's online judge. Both sh
 in each and every solution.
 - The solutions also succinctly encompasses years of C++ industry programming experience and care has been taken
 to optimize even at the slightest visible portions of the code.
-- *The code in this repo is completely original content and written by me.*
+- *The code in this repo is completely original content and written by me.* If you like what you see, don't forget to show your liking by :star:ing this repo.
 
 ## How to contribute?
 1. Fork the repository :fork_and_knife:
