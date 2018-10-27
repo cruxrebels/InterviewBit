@@ -19,24 +19,18 @@ https://www.interviewbit.com/problems/reverse-linked-list/
  */
 
 // Recursive approach
-/*ListNode* RecursiveReverse(ListNode* prev, ListNode* curr, ListNode* head)
+/*ListNode* RecursiveReverse(ListNode* curr, ListNode* next, ListNode* prev)
 {
-    if (!curr->next)
-    {
-        curr->next = prev;
-        head = curr;
-        return head;
-    }
-    ListNode* next = curr->next;
+    if (!curr)
+        return prev;
+    next = curr->next;
     curr->next = prev;
-    return RecursiveReverse(curr, next, head);
+    reverse(next, next, curr);
 }*/
 
 ListNode* Solution::reverseList(ListNode* A) {
     // Recursive approach
-    /*if (!A)
-        return A;
-    return RecursiveReverse(NULL, A, A);*/
+    //return RecursiveReverse(A, A->next, NULL);
     
     // Iterative approach
     ListNode* prev = NULL;
