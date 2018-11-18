@@ -1,7 +1,9 @@
 /*
-We define f(X, Y) as number of different corresponding bits in binary representation of X and Y. For example, f(2, 7) = 2, since binary representation of 2 and 7 are 010 and 111, respectively. The first and the third bit differ, so f(2, 7) = 2.
+We define f(X, Y) as number of different corresponding bits in binary representation of X and Y. For example, f(2, 7) = 2, 
+since binary representation of 2 and 7 are 010 and 111, respectively. The first and the third bit differ, so f(2, 7) = 2.
 
-You are given an array of N positive integers, A1, A2 ,…, AN. Find sum of f(Ai, Aj) for all pairs (i, j) such that 1 ≤ i, j ≤ N. Return the answer modulo 109+7.
+You are given an array of N positive integers, A1, A2 ,…, AN. Find sum of f(Ai, Aj) for all pairs (i, j) such that 
+1 ≤ i, j ≤ N. Return the answer modulo 10^9+7.
 
 For example,
 
@@ -33,7 +35,7 @@ int Solution::cntBits(vector<int> &A) {
         LL count = 0;   // previously int count gave WA
         for (auto j = 0; j<n; ++j)
             if(A[j] & (1<<i))
-                ++count;
+                ++count;        // count is the number of set(1) bits, so (n - count) will give number of unset(0) bits
         sum += (count*((LL)n-count)*2)%MOD; // previously didn't used LL & MOD gave WA
         
         if(sum>=MOD)    // previously didn't add this check gave WA
