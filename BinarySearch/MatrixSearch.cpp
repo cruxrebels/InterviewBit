@@ -24,23 +24,18 @@ https://www.interviewbit.com/problems/matrix-search/
 */
 
 int Solution::searchMatrix(vector<vector<int> > &A, int B) {
-    auto rows = A.size();
-    auto cols = A[0].size();
-    
-    for(auto i=0; i<rows; ++i)
-    {
-        int start = 0, end = cols - 1;
-        
-        while(start<=end)
-        {
-            int mid = start + (end-start)/2;
-            if(A[i][mid]==B)
-                return 1;
-            else if(A[i][mid]<B)
-                start = mid + 1;
-            else
-                end = mid - 1;
-        }
+    size_t rows = A.size();
+    size_t cols = A[0].size();
+    int start = 0, end = (rows*cols)-1;
+    while (start <= end) {
+        int mid = start + (end-start)/2;
+        int row = mid/cols, col = mid%cols;
+        if (A[row][col] == B)
+            return 1;
+        else if (A[row][col] < B)
+            start = mid + 1;
+        else
+            end = mid - 1;
     }
     return 0;
 }
