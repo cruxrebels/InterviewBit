@@ -21,3 +21,23 @@ Output : 1
 
 https://www.interviewbit.com/problems/colorful-number/
 */
+
+int Solution::colorful(int A) {
+    vector<int> vec;
+    while (A != 0) {
+        vec.emplace_back(A%10);
+        A /= 10;
+    }
+    reverse(vec.begin(), vec.end());
+    unordered_map<long long, bool> hash;
+    for (auto i = 0; i < vec.size(); ++i) {
+        long long value = 1;
+        for (auto j = i; j < vec.size(); ++j) {
+            value *= vec[j];
+            if (hash.find(value) != hash.end())
+                return 0;
+            hash.insert({value, true});
+        }
+    }
+    return 1;
+}
