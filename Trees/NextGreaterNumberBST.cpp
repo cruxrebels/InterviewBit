@@ -41,7 +41,7 @@ TreeNode* FindCurrentNode(TreeNode* A, int B)
         return FindCurrentNode(A->right, B);
 }
 
-TreeNode* FindParentNode(TreeNode* root, TreeNode* dest)
+/*TreeNode* FindParentNode(TreeNode* root, TreeNode* dest)  // Doesn't work properly
 {
     if (!root || root->left == dest || root->right == dest)
         return root;
@@ -49,7 +49,7 @@ TreeNode* FindParentNode(TreeNode* root, TreeNode* dest)
         return FindParentNode(root->left, dest);
     else if (root->val < dest->val)
         return FindParentNode(root->right, dest);
-}
+}*/
 
 TreeNode* Solution::getSuccessor(TreeNode* A, int B) {
     TreeNode* currNode = FindCurrentNode(A, B);
