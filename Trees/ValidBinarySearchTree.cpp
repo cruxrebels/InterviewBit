@@ -50,3 +50,32 @@ int isValidBSTHelper(TreeNode* root, int minValue, int maxValue)
 int Solution::isValidBST(TreeNode* A) {
     return isValidBSTHelper(A, INT_MIN, INT_MAX);
 }
+
+// Brute force solution
+
+/*int isValidLeftSubtree(TreeNode* left, int data) {
+    if (!left)
+        return 1;
+    else if (left->val < data && isValidLeftSubtree(left->left, data)
+                && isValidLeftSubtree(left->right, data))
+        return 1;
+    else
+        return 0;
+}
+
+int isValidRightSubtree(TreeNode* right, int data) {
+    if (!right)
+        return 1;
+    else if (right->val > data && isValidRightSubtree(right->left, data)
+                && isValidRightSubtree(right->right, data))
+        return 1;
+    else
+        return 0;
+}
+
+int Solution::isValidBST(TreeNode* A) {
+    if (!A)
+        return 1;
+    return (isValidLeftSubtree(A->left, A->val) && isValidRightSubtree(A->right, A->val)
+            && isValidBST(A->left) && isValidBST(A->right));
+}*/
