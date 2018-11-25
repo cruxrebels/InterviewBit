@@ -29,7 +29,7 @@ vector<int> Solution::dNums(vector<int> &A, int B) {
     //    return res;
     assert(B<=n);   // if false then write a error message to stdout & calls abort
     
-    map<int, int> m;
+    unordered_map<int, int> m;
     for (auto i = 0; i<n; ++i)
     {
         ++m[A[i]];
