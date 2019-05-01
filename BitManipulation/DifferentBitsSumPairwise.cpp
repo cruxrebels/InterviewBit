@@ -37,6 +37,8 @@ int Solution::cntBits(vector<int> &A) {
             if(A[j] & (1<<i))
                 ++count;        // count is the number of set(1) bits, so (n - count) will give number of unset(0) bits
         sum += (count*((LL)n-count)*2)%MOD; // previously didn't used LL & MOD gave WA
+                                            // we are calculating differences for (x,y) so for (y,x) just multiply it with 2
+                                            // So FORMULA = COUNT * (N - COUNT ) *2
         
         if(sum>=MOD)    // previously didn't add this check gave WA
             sum -= MOD;
