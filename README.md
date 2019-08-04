@@ -21,6 +21,8 @@ to optimize even at the slightest visible portions of the code.
 ## How to contribute?
 1. Fork the repository :fork_and_knife:
 2. Do the desired changes (add/delete/modify) :pencil2:
+3. Make sure you've followed the existing coding standards and pattern of pasting the entire problem statement with a link to the problem on [InterviewBit](https://www.interviewbit.com). For reference, you can follow any existing file in this Repo. e.g. [AddOneToNumber.cpp](https://github.com/cruxrebels/InterviewBit/blob/master/Arrays/AddOneToNumber.cpp)
+4. Attach a screenshot from [InterviewBit](https://www.interviewbit.com) showing that your solution was ACCEPTED by the online judge. I've been getting a lot of pull requests which are not Accepted by the online judge.
 3. Make a pull request :shipit:
 
 ## When should you contribute?
