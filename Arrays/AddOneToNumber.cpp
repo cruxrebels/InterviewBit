@@ -11,7 +11,7 @@ If the vector has [1, 2, 3]
 
 the returned vector should be [1, 2, 4]
 
-as 123 + 1 = 124.
+as 123 + 1=124.
 
  NOTE: Certain things are intentionally left unclear in this question which you should practice asking the interviewer.
 For example, for this problem, following are some good questions to ask :
