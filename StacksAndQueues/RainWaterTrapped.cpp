@@ -16,7 +16,7 @@ https://www.interviewbit.com/problems/rain-water-trapped/
 */
 
 int Solution::trap(const vector<int> &arr) {
-    int n=arr.size();
+    int n = arr.size();
     int left[n]; 
     int right[n]; 
     int water = 0; 
