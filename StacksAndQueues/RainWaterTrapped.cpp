@@ -16,13 +16,13 @@ https://www.interviewbit.com/problems/rain-water-trapped/
 */
 
 int Solution::trap(const vector<int> &arr) {
-    int n = arr.size();
-    int left[n];  
+    int n=arr.size();
+    int left[n]; 
     int right[n]; 
-    int water = 0;  
+    int water = 0; 
     left[0] = arr[0]; 
     for (auto i = 1; i < n; ++i) 
-       left[i] = max(left[i-1], arr[i]);   
+       left[i] = max(left[i-1], arr[i]); 
     right[n-1] = arr[n-1]; 
     for (auto i = n-2; i >= 0; --i) 
        right[i] = max(right[i+1], arr[i]); 
@@ -30,3 +30,4 @@ int Solution::trap(const vector<int> &arr) {
        water += min(left[i],right[i]) - arr[i]; 
     return water;
 }
+
