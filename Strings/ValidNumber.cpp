@@ -52,18 +52,19 @@ int Solution::isNumber(const string &A) {
     else if (A[i]=='e')
         return 0;
     
-    bool eflag = false;
+    bool eflag = false, dflag = false;
     
     while (i<n)
     {
         if(A[i]=='.')
         {
-            if(eflag)
+            if(eflag || dflag)
                 return 0;
             else if(A[i+1]>='0' && A[i+1]<='9')
                 i+=2;
             else
                 return 0;
+            dflag = true;
         }
         else if (A[i]=='e')
         {
