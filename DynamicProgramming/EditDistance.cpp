@@ -1,5 +1,6 @@
 /*
-Given two strings A and B, find the minimum number of steps required to convert A to B. (each operation is counted as 1 step.)
+Given two strings A and B, 
+Find the minimum number of steps required to convert A to B. (each operation is counted as 1 step.)
 
 You have the following 3 operations permitted on a word:
 
