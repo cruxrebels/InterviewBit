@@ -51,16 +51,16 @@ https://www.interviewbit.com/problems/edit-distance/
 int Solution::minDistance(string A, string B) {
     int m = A.size(), n = B.size();
     int sol[m+1][n+1];
-    for(auto i=0;i<=m;++i){
-        for(auto j=0;j<=n;++j){
-            if( i==0 )
+    for(auto i=0; i<=m; ++i){
+        for(auto j=0; j<=n; ++j){
+            if( i == 0 )
                 sol[i][j] = j;
-            else if( j==0 )
-                    sol[i][j] = i;
-                 else if( A[i-1]==B[j-1] )
-                         sol[i][j] = sol[i-1][j-1];
-                      else
-                        sol[i][j] = 1+min(sol[i][j-1],min(sol[i-1][j],sol[i-1][j-1]));
+            else if( j == 0 )
+                sol[i][j] = i;
+            else if( A[i-1] == B[j-1] )
+                sol[i][j] = sol[i-1][j-1];
+            else
+                sol[i][j] = 1 + min( sol[i][j-1], min( sol[i-1][j], sol[i-1][j-1]));
         }
     }
     return sol[m][n];
