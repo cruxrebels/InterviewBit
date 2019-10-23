@@ -56,14 +56,16 @@ int Solution::longestSubsequenceLength(const vector<int> &A) {
         lds[i] = 1; 
     }
     for (auto i = n-2; i >= 0; --i) 
-    {   for (auto j = n-1; j > i; --j) 
+    {   
+        for (auto j = n-1; j > i; --j) 
         {
             if (A[i] > A[j] && lds[i] < lds[j] + 1) 
                 lds[i] = lds[j] + 1; 
         }
     }
     int max = lis[0] + lds[0] - 1; 
-    for (auto i = 1; i < n; ++i){
+    for (auto i = 1; i < n; ++i)
+    {
         if (lis[i] + lds[i] - 1 > max) 
             max = lis[i] + lds[i] - 1;
     }
