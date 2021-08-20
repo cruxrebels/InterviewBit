@@ -26,7 +26,7 @@ int Solution::trap(const vector<int> &arr) {
     right[n-1] = arr[n-1]; 
     for (auto i = n-2; i >= 0; --i) 
        right[i] = max(right[i+1], arr[i]); 
-    for (auto i = 0; i < n; --i) 
+    for (auto i = 0; i < n; ++i) 
        water += min(left[i],right[i]) - arr[i]; 
     return water;
 }
